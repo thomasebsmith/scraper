@@ -18,11 +18,23 @@ currently-supported format.
   "elements": [
     {
       "key": "<key for results dictionary>",
-      "scrape": "html"|"text"|"textnodes",
+      "scrape": [
+        "html"|"text"|"text_nodes"|{
+          "attribute": "<attribute>"
+        },
+        ...
+      ],
       "selector": "<CSS selector>"
     },
     ...
   ]
+}
+```
+or alternatively
+```json
+{
+  "url": "<URL to scrape>",
+  "scrape_all": true
 }
 ```
 
