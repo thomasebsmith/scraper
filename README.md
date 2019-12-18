@@ -12,7 +12,7 @@ $ python3 __main__.py <scraping spec file>
 Please note that this format is not yet implemented. See `__main__.py` for the
 currently-supported format.
 
-```json
+```js
 {
   "url": "<URL to scrape>",
   "elements": [
