@@ -18,25 +18,17 @@ currently-supported format.
   "elements": [
     {
       "key": "<key for results dictionary>",
-      "scrape": [
-        "html"|"text"|"text_nodes"|{
-          "attribute": "<attribute>"
-        },
-        ...
-      ],
+      "scrape": "html"|"text"|"text_nodes"|{
+        "attribute": "<attribute>"
+      },
       "selector": "<CSS selector>"
     },
     ...
-  ]
+  ],
+  "scrape_all": true|false
 }
 ```
-or alternatively
-```json
-{
-  "url": "<URL to scrape>",
-  "scrape_all": true
-}
-```
+Note that `elements` need not be present if `scrape_all` is true.
 
 ## System Requirements
 Scraper requires:
