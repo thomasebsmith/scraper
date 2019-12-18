@@ -12,22 +12,36 @@ $ python3 __main__.py <scraping spec file>
 Please note that this format is not yet implemented. See `__main__.py` for the
 currently-supported format.
 
+Main structure:
 ```js
 {
   "url": "<URL to scrape>",
   "elements": [
-    {
-      "key": "<key for results dictionary>",
-      "scrape": "html"|"text"|"text_nodes"|{
-        "attribute": "<attribute>"
-      },
-      "selector": "<CSS selector>"
-    },
+    <element>,
+    ...
+  ]
+    ,
     ...
   ],
   "scrape_all": true|false
 }
 ```
+
+`element`:
+```js
+{
+  "key": "<key for results dictionary>",
+  "scrape": "html"|"text"|"text_nodes"|{
+    "attribute": "<attribute>"
+  }|[
+    <element>,
+    ...
+  ],
+  "selector": "<CSS selector>",
+  "select_all": true|false
+}
+```
+
 Note that `elements` need not be present if `scrape_all` is true.
 
 ## System Requirements

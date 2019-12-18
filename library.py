@@ -2,27 +2,36 @@ from bs4 import BeautifulSoup
 import requests
 
 def scrape(spec):
+  def recursive_scrape(scrape, html):
+    if scrape == "html":
+      return str(html)
+    elif scrape == "text":
+      return html.get_text()
+    elif scrape == "text_nodes":
+      # TODO
+      return None
+    elif type(scrape) is dict:
+      return html.attrs.get(element["attribute"])
+    # else: element should be an array of elements
+    results = {}
+    for el in scrape:
+      to_scrape = el["scrape"]
+      tags = html.select(el["selector"])
+      if not el["select_all"] and len(tags) > 0:
+        tag = tags[0]
+        results[el["key"]] = recursive_scrape(to_scrape, tag)
+      else:
+        results[el["key"]] = [recursive_scrape(to_scrape, tag) for tag in tags]
+    return results
+
   url = spec["url"]
   should_scrape_all = spec["scrape_all"]
 
   req = requests.get(url)
-  results = req.text
-  if not should_scrape_all:
-    elements = spec["elements"]
-    html = BeautifulSoup(req.text, "html.parser")
-    results = {}
-    for element in elements:
-      to_scrape = element["scrape"]
-      tags = html.select(element["selector"])
-      result = None
-      if to_scrape == "html":
-        result = [str(tag) for tag in tags]
-      elif to_scrape == "text":
-        result = [tag.get_text() for tag in tags]
-      # TODO: text_nodes
-      else:
-        # to_scrape is an attribute object
-        result = [tag.attrs[to_scrape["attribute"]] for tag in tags]
-      results[element["key"]] = result
-
-  return results
+  if should_scrape_all:
+    return req.text
+  elements = spec["elements"]
+  html = BeautifulSoup(req.text, "html.parser")
+  if type(elements) != list:
+    return None
+  return recursive_scrape(elements, html)
