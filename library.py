@@ -1,18 +1,34 @@
+import re
+
 from bs4 import BeautifulSoup
 import requests
 
 def scrape(spec):
   def recursive_scrape(scrape, html):
+    options = {}
+    result = None
+
+    if type(scrape) is dict:
+      options = scrape
+      scrape = scrape["type"]
+
     if scrape == "html":
-      return str(html)
+      result = str(html)
     elif scrape == "text":
-      return html.get_text()
+      result = html.get_text()
     elif scrape == "text_nodes":
       # TODO
-      return None
-    elif type(scrape) is dict:
-      return html.attrs.get(element["attribute"])
-    # else: element should be an array of elements
+      result = None
+    elif scrape == "attribute":
+       result = html.attrs.get(options["attribute"])
+
+    if result != None or type(scrape) != list:
+      if "regex" in options:
+        pattern = re.compile(options["regex"][0])
+        result = pattern.sub(options["regex"][1], result)
+      return result
+
+    # else: scrape should be an array of elements
     results = {}
     for el in scrape:
       to_scrape = el["scrape"]

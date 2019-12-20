@@ -19,9 +19,6 @@ Main structure:
   "elements": [
     <element>,
     ...
-  ]
-    ,
-    ...
   ],
   "scrape_all": true|false
 }
@@ -32,7 +29,9 @@ Main structure:
 {
   "key": "<key for results dictionary>",
   "scrape": "html"|"text"|"text_nodes"|{
-    "attribute": "<attribute>"
+    "type": "html"|"text"|"text_nodes"|"attribute",
+    *"attribute": "<attribute>",
+    *"regex": ["<find>", "<replace with>"]
   }|[
     <element>,
     ...
@@ -41,6 +40,7 @@ Main structure:
   "select_all": true|false
 }
 ```
+`*` denotes a field that is not always required.
 
 Note that `elements` need not be present if `scrape_all` is true.
 
