@@ -31,7 +31,8 @@ Main structure:
   "scrape": "html"|"text"|"text_nodes"|{
     "type": "html"|"text"|"text_nodes"|"attribute",
     *"attribute": "<attribute>",
-    *"regex": ["<find>", "<replace with>"]
+    *"regex": ["<find>", "<replace with>"],
+    *"parse_as": "str"|"int"|"float"|"bool"
   }|[
     <element>,
     ...

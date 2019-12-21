@@ -3,6 +3,19 @@ import re
 from bs4 import BeautifulSoup
 import requests
 
+def parse_as(value, type_string):
+  converter = str
+  if type_string == "int":
+    converter = int
+  elif type_string == "float":
+    converted = float
+  elif type_string == "bool":
+    converter = bool
+  try:
+    return converter(value)
+  except ValueError:
+    return None
+
 def scrape(spec):
   def recursive_scrape(scrape, html):
     options = {}
@@ -26,6 +39,7 @@ def scrape(spec):
       if "regex" in options:
         pattern = re.compile(options["regex"][0])
         result = pattern.sub(options["regex"][1], result)
+      result = parse_as(result, options.get("parse_as", "str"))
       return result
 
     # else: scrape should be an array of elements
