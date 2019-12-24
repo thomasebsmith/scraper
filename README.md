@@ -50,3 +50,4 @@ Scraper requires:
 - `python3`
 - The Python `requests` library
 - The Python `Beautiful Soup` library
+  - The `SoupSieve` library (often installed with Beautiful Soup)
