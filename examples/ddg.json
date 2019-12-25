@@ -1,0 +1,28 @@
+{
+  "url": "https://duckduckgo.com/html/?q=Duck+Duck+Go",
+  "elements": [
+    {
+      "key": "results",
+      "selector": ".result__a",
+      "select_all": true,
+      "scrape": [
+        {
+          "key": "title",
+          "selector": ":scope",
+          "select_all": false,
+          "scrape": "text"
+        },
+        {
+          "key": "url",
+          "selector": ":scope",
+          "select_all": false,
+          "scrape": {
+            "type": "attribute",
+            "attribute": "href"
+          }
+        }
+      ]
+    }
+  ],
+  "scrape_all": false
+}
