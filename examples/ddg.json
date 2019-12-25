@@ -3,18 +3,18 @@
   "elements": [
     {
       "key": "results",
-      "selector": ".result__a",
+      "selector": ".result__title",
       "select_all": true,
       "scrape": [
         {
           "key": "title",
-          "selector": ":scope",
+          "selector": ":scope > .result__a",
           "select_all": false,
           "scrape": "text"
         },
         {
           "key": "url",
-          "selector": ":scope",
+          "selector": ":scope > .result__a",
           "select_all": false,
           "scrape": {
             "type": "attribute",
