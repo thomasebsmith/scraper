@@ -1,0 +1,48 @@
+{
+  "url": "https://stackoverflow.com/questions?tab=Votes",
+  "elements": [
+    {
+      "key": "questions",
+      "selector": ".question-summary",
+      "select_all": true,
+      "scrape": [
+        {
+          "key": "title",
+          "selector": ":scope>.summary>h3>.question-hyperlink",
+          "select_all": false,
+          "scrape": "text"
+        },
+        {
+          "key": "url",
+          "selector": ":scope>.summary>h3>.question-hyperlink",
+          "select_all": false,
+          "scrape": {
+            "type": "attribute",
+            "attribute": "href"
+          }
+        },
+        {
+          "key": "votes",
+          "selector": ":scope>.statscontainer>.stats>.vote>.votes>span",
+          "select_all": false,
+          "scrape": {
+            "type": "text",
+            "parse_as": "int"
+          }
+        },
+        {
+          "key": "views",
+          "selector": ":scope>.statscontainer>.views",
+          "select_all": false,
+          "scrape": {
+            "type": "attribute",
+            "attribute": "title",
+            "regex": ["[^0-9]", ""],
+            "parse_as": "int"
+          }
+        }
+      ]
+    }
+  ],
+  "scrape_all": false
+}
