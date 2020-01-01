@@ -9,8 +9,7 @@ $ python3 __main__.py <scraping spec file>
 ```
 
 ## Scraping Spec File Format
-Please note that this format is not yet implemented. See `__main__.py` for the
-currently-supported format.
+This format is fully implemented, except for `text_nodes`.
 
 Main structure:
 ```js
@@ -30,9 +29,9 @@ Main structure:
   "key": "<key for results dictionary>",
   "scrape": "html"|"text"|"text_nodes"|{
     "type": "html"|"text"|"text_nodes"|"attribute",
-    *"attribute": "<attribute>",
-    *"regex": ["<find>", "<replace with>"],
-    *"parse_as": "str"|"int"|"float"|"bool"
+   *"attribute": "<attribute>",
+   *"regex": ["<find>", "<replace with>"],
+   *"parse_as": "str"|"int"|"float"|"bool"
   }|[
     <element>,
     ...
@@ -43,11 +42,11 @@ Main structure:
 ```
 `*` denotes a field that is not always required.
 
-Note that `elements` need not be present if `scrape_all` is true.
+Note that `elements` need not be present if `scrape_all` is `true`.
 
 ## System Requirements
 Scraper requires:
 - `python3`
 - The Python `requests` library
 - The Python `Beautiful Soup` library
-  - The `SoupSieve` library (often installed with Beautiful Soup)
+  - The `SoupSieve` library (often installed with `Beautiful Soup`)
