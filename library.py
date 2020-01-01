@@ -1,6 +1,6 @@
 import re
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, element as bs4_element
 import requests
 
 def __parse_as(value, type_string):
@@ -29,8 +29,10 @@ def __recursive_scrape(scrape, html):
   elif scrape == "text":
     result = html.get_text()
   elif scrape == "text_nodes":
-    # TODO
-    result = None
+    result = ""
+    for child in html.children:
+      if type(child) is bs4_element.NavigableString:
+        result += child
   elif scrape == "attribute":
       result = html.attrs.get(options["attribute"])
 

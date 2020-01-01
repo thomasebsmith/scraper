@@ -9,7 +9,7 @@ $ python3 __main__.py <scraping spec file>
 ```
 
 ## Scraping Spec File Format
-This format is fully implemented, except for `text_nodes`.
+This format is fully implemented.
 
 Main structure:
 ```js

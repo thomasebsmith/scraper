@@ -20,8 +20,7 @@
           "selector": ":scope>:nth-child(5)",
           "select_all": false,
           "scrape": {
-            "type": "text",
-            "regex": ["[^0-9]", ""],
+            "type": "text_nodes",
             "parse_as": "int"
           }
         },
@@ -30,8 +29,7 @@
           "selector": ":scope>:nth-child(7)",
           "select_all": false,
           "scrape": {
-            "type": "text",
-            "regex": ["[^0-9-]", ""],
+            "type": "text_nodes",
             "parse_as": "int"
           }
         }
