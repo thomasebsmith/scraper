@@ -35,7 +35,6 @@ def __recursive_scrape(scrape, html):
         result += child
   elif scrape == "attribute":
       result = html.attrs.get(options["attribute"])
-
   if result != None or type(scrape) != list:
     if "regex" in options:
       pattern = re.compile(options["regex"][0])
@@ -68,10 +67,15 @@ def scrape(spec):
   }
 
   req = requests.get(url, headers=headers)
+  text = req.text
+  if "initial_regex" in spec:
+    pattern = re.compile(spec["initial_regex"][0])
+    text = pattern.sub(spec["initial_regex"][1], text)
+
   if should_scrape_all:
-    return req.text
+    return text
   elements = spec["elements"]
-  html = BeautifulSoup(req.text, "html.parser")
+  html = BeautifulSoup(text, "html.parser")
   if type(elements) != list:
     return None
   return __recursive_scrape(elements, html)
