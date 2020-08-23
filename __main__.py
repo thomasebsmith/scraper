@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import requests
 import sys
 
 import library
@@ -44,7 +45,17 @@ scraping_spec_file should be a JSON file in the format:
 }
 """
 
-result = library.scrape(scraping_spec)
+try:
+  result = library.scrape(scraping_spec)
+except requests.exceptions.ConnectionError:
+  print("Error connecting to host.", file=sys.stderr)
+  sys.exit(1)
+except requests.exceptions.Timeout:
+  print("Request timed out.", file=sys.stderr)
+  sys.exit(1)
+except requests.exceptions.TooManyRedirects:
+  print("Too many redirects.", file=sys.stderr)
+  sys.exit(1)
 
 if should_pretty_print:
   print(json.dumps(result, indent=4))
