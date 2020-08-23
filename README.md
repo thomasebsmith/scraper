@@ -19,6 +19,10 @@ Main structure:
     <element>,
     ...
   ],
+  *"headers": {
+    "<header name 1>": "<header value 1>",
+    ...
+  },
   "scrape_all": true|false
 }
 ```

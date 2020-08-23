@@ -1,0 +1,9 @@
+{
+  "url": "http://localhost:8000",
+  "elements": [],
+  "headers": {
+    "X-Custom-Header": "A custom value.",
+    "Cookie": "parameter=value; parameter2=value2"
+  },
+  "scrape_all": true
+}

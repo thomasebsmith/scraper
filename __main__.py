@@ -32,8 +32,15 @@ scraping_spec_file.close()
 scraping_spec_file should be a JSON file in the format:
 {
   "url": "<URL to scrape here>",
-  "selectors": ["<CSS selector here>", ...],
-  "all": <bool - whether to scrape entire page>
+  "elements": [
+    <element>,
+    ...
+  ],
+  "headers": {
+    "<header name>": "<header value>",
+    ...
+  },
+  "scrape_all": <bool - whether to scrape entire page>
 }
 """
 

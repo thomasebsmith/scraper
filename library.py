@@ -60,11 +60,12 @@ def __recursive_scrape(scrape, html):
 def scrape(spec):
   url = spec["url"]
   should_scrape_all = spec["scrape_all"]
-  
+
   headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
   }
+  if "headers" in spec:
+    headers.update(spec["headers"])
 
   req = requests.get(url, headers=headers)
   text = req.text
