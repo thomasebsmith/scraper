@@ -15,7 +15,7 @@ Main structure:
 ```js
 {
   "url": "<URL to scrape>",
-  "elements": [
+  *"elements": [
     <element>,
     ...
   ],
@@ -47,6 +47,10 @@ Main structure:
 `*` denotes a field that is not always required.
 
 Note that `elements` need not be present if `scrape_all` is `true`.
+Also, the User-Agent header defaults to
+`Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36`
+if one is not provided.
 
 ## System Requirements
 Scraper requires:
