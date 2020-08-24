@@ -3,6 +3,10 @@ import re
 from bs4 import BeautifulSoup, element as bs4_element
 import requests
 
+class ScrapeSpecError(Exception):
+  def __init__(self, message):
+    super().__init__(message)
+
 def __parse_as(value, type_string):
   converter = str
   if type_string == "int":
@@ -57,8 +61,17 @@ def __recursive_scrape(scrape, html):
   return results
 
 
-def scrape(spec):
+def scrape(given_spec):
+  # Top-level spec defaults.
+  spec = {
+    "scrape_all": False
+  };
+  spec.update(given_spec);
+
+  if "url" not in spec:
+    raise ScrapeSpecError("No \"url\" parameter was provided for scraping.");
   url = spec["url"]
+
   should_scrape_all = spec["scrape_all"]
 
   headers = {
@@ -66,6 +79,11 @@ def scrape(spec):
   }
   if "headers" in spec:
     headers.update(spec["headers"])
+
+  if not should_scrape_all and "elements" not in spec:
+    raise ScrapeSpecError(
+      "No \"elements\" parameter was provided for scraping."
+    );
 
   req = requests.get(url, headers=headers)
   text = req.text

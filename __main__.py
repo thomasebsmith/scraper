@@ -56,6 +56,9 @@ except requests.exceptions.Timeout:
 except requests.exceptions.TooManyRedirects:
   print("Too many redirects.", file=sys.stderr)
   sys.exit(1)
+except library.ScrapeSpecError as e:
+  print(e, file=sys.stderr)
+  sys.exit(1)
 
 if should_pretty_print:
   print(json.dumps(result, indent=4))
