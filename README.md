@@ -23,7 +23,7 @@ Main structure:
     "<header name 1>": "<header value 1>",
     ...
   },
-  "scrape_all": true|false
+  *"scrape_all": true|false
 }
 ```
 
@@ -46,7 +46,9 @@ Main structure:
 ```
 `*` denotes a field that is not always required.
 
-Note that `elements` need not be present if `scrape_all` is `true`.
+Note that `elements` need not be present if `scrape_all` is `true`, and
+`scrape_all` defaults to false.
+
 Also, the User-Agent header defaults to
 `Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36`
