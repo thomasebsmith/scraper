@@ -23,7 +23,8 @@ Main structure:
     "<header name 1>": "<header value 1>",
     ...
   },
-  *"scrape_all": true|false
+  *"scrape_all": true|false,
+  *"initial_regex": ["<find>", "<replace with>"]
 }
 ```
 
